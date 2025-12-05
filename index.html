@@ -6,7 +6,7 @@
     <title>Poker Up Down</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Custom utility for 3D flip card effect since Tailwind standard utilities might need arbitrary values for backface-visibility */
+      /* Custom utility for 3D flip card effect */
       .perspective-1000 {
         perspective: 1000px;
       }
@@ -21,7 +21,7 @@
         transform: rotateY(180deg);
       }
       
-      /* Animation keyframes for the flip */
+      /* Animation keyframes */
       @keyframes flipIn {
         from {
           transform: rotateY(180deg) scale(0.8);
@@ -32,27 +32,49 @@
           opacity: 1;
         }
       }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
       
       .animate-flip {
         animation: flipIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
       }
 
       body {
         touch-action: manipulation;
       }
+      
+      .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+      }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
   <body class="bg-slate-900 text-white overflow-hidden">
     <div id="root"></div>
-    <script type="module" scr="index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
